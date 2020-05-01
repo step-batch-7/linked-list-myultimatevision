@@ -248,3 +248,13 @@ void display(List_ptr list)
     p_walk = p_walk->next;
   }
 }
+
+Status is_value_exists(List_ptr list, int value)
+{
+  Node_ptr p_walk = list->head;
+  while (p_walk != NULL && p_walk->value != value)
+  {
+    p_walk = p_walk->next;
+  }
+  return p_walk == NULL ? Failure : Success;
+}

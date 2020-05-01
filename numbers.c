@@ -14,8 +14,9 @@ void print_menu()
   printf("(h) remove first occurrence of a number\n");
   printf("(i) remove all occurrences of a number\n");
   printf("(j) clear the whole list\n");
-  printf("(k) display the list of numbers\n");
-  printf("(l) exit\n");
+  printf("(k) check if a number exists in the list\n");
+  printf("(l) display the list of numbers\n");
+  printf("(m) exit\n");
   printf("\nPlease enter the alphabet of the operation you would like to perform\n");
 };
 
@@ -27,9 +28,20 @@ int read(char *string)
   return value;
 }
 
+void print_exist_status(int value, Status status)
+{
+  char *string = "does not exists in the list";
+  if (status == Success)
+  {
+    string = "exists in the list";
+  }
+  printf("%d %s\n", value, string);
+}
+
 void perform_operation(List_ptr list, char choice)
 {
   int value, position;
+  Status status;
   switch (choice)
   {
   case 'a':
@@ -81,10 +93,16 @@ void perform_operation(List_ptr list, char choice)
     break;
 
   case 'k':
-    display(list);
+    value = read("enter value to search: \n");
+    status = is_value_exists(list, value);
+    print_exist_status(value, status);
     break;
 
   case 'l':
+    display(list);
+    break;
+
+  case 'm':
     destroy_list(list);
     break;
 
@@ -104,6 +122,6 @@ int main(void)
     perform_operation(list, choice);
     while ((getchar()) != '\n')
       ;
-  } while (choice != 'l');
+  } while (choice != 'm');
   return 0;
 }
