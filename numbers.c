@@ -10,6 +10,8 @@ int main(void)
   add_unique(list, 8);
   remove_from_start(list);
   remove_from_end(list);
+  remove_at(list, 1);
+  remove_first_occurrence(list, 5);
   display(list);
   return 0;
 }
