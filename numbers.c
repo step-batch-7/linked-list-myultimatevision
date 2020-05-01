@@ -5,5 +5,6 @@ int main(void)
 {
   List_ptr list = create();
   add_to_end(list, 5);
+  display(list);
   return 0;
 }

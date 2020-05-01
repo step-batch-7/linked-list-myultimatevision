@@ -32,3 +32,13 @@ Status add_to_end(List_ptr list, int value)
   list->last = new_node;
   return Success;
 }
+
+void display(List_ptr list)
+{
+  Node *p_walk = list->head;
+  while (p_walk != NULL)
+  {
+    printf("%d\n", p_walk->value);
+    p_walk = p_walk->next;
+  }
+}
