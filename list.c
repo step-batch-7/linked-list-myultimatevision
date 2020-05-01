@@ -180,6 +180,28 @@ Status remove_first_occurrence(List_ptr list, int value)
   return p_walk == NULL ? Failure : remove_at(list, position);
 }
 
+Status remove_all_occurrences(List_ptr list, int value)
+{
+  Node *p_walk = list->head;
+  int count = list->count;
+  int position = 0;
+  int pre_value;
+  while (p_walk != NULL)
+  {
+    pre_value = p_walk->value;
+    p_walk = p_walk->next;
+    if (pre_value == value)
+    {
+      remove_at(list, position);
+    }
+    else
+    {
+      position++;
+    }
+  }
+  return count == list->count ? Failure : Success;
+}
+
 void display(List_ptr list)
 {
   printf("no of elements in list : %d\n", list->count);
