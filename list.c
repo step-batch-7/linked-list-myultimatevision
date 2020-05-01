@@ -30,6 +30,7 @@ Status add_to_end(List_ptr list, int value)
     list->last->next = new_node;
   }
   list->last = new_node;
+  list->count++;
   return Success;
 }
 
@@ -45,6 +46,7 @@ Status add_to_start(List_ptr list, int value)
     new_node->next = list->head;
   }
   list->head = new_node;
+  list->count++;
   return Success;
 }
 
