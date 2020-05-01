@@ -80,6 +80,16 @@ Status insert_at(List_ptr list, int value, int position)
   return Success;
 }
 
+Status add_unique(List_ptr list, int value)
+{
+  Node_ptr p_walk = list->head;
+  while (p_walk != NULL && p_walk->value != value)
+  {
+    p_walk = p_walk->next;
+  }
+  return p_walk == NULL ? add_to_end(list, value) : Failure;
+}
+
 void display(List_ptr list)
 {
   printf("no of elements in list : %d\n", list->count);
