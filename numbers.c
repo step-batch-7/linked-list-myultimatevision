@@ -16,7 +16,9 @@ int main(void)
   remove_first_occurrence(list, 5);
   remove_all_occurrences(list, 9);
 
-  clear_list(list);
   display(list);
+
+  clear_list(list);
+  destroy_list(list);
   return 0;
 }

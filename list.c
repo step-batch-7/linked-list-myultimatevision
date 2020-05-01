@@ -222,6 +222,22 @@ Status clear_list(List_ptr list)
   return Success;
 }
 
+void destroy_list(List_ptr list)
+{
+  if (list != NULL)
+  {
+    Node_ptr p_walk = list->head;
+    Node_ptr pre_node;
+    while (p_walk != NULL)
+    {
+      pre_node = p_walk;
+      p_walk = p_walk->next;
+      free(pre_node);
+    }
+    free(list);
+  }
+}
+
 void display(List_ptr list)
 {
   printf("no of elements in list : %d\n", list->count);
