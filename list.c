@@ -98,6 +98,23 @@ Status remove_from_start(List_ptr list)
   return Success;
 }
 
+Status remove_from_end(List_ptr list)
+{
+  if (list->last == NULL)
+  {
+    return Failure;
+  }
+  Node_ptr p_walk = list->head;
+  while (p_walk->next != list->last)
+  {
+    p_walk = p_walk->next;
+  }
+  p_walk->next = NULL;
+  free(list->last);
+  list->last = p_walk;
+  return Success;
+}
+
 void display(List_ptr list)
 {
   printf("no of elements in list : %d\n", list->count);

@@ -9,6 +9,7 @@ int main(void)
   insert_at(list, 4, 0);
   add_unique(list, 8);
   remove_from_start(list);
+  remove_from_end(list);
   display(list);
   return 0;
 }
