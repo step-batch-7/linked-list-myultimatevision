@@ -137,6 +137,37 @@ Status remove_from_end(List_ptr list)
   return Success;
 }
 
+Status remove_at(List_ptr list, int position)
+{
+  if (list->last == NULL || (position < 0 || position >= list->count))
+  {
+    return Failure;
+  }
+  if (position == 0)
+  {
+    return remove_from_start(list);
+  }
+  if (position == list->count - 1)
+  {
+    return remove_from_end(list);
+  }
+
+  Node_ptr p_walk = list->head;
+  Node_ptr pre_node = NULL;
+  int count = 0;
+
+  while (count != position)
+  {
+    pre_node = p_walk;
+    p_walk = p_walk->next;
+    count++;
+  }
+  pre_node->next = p_walk->next;
+  free(p_walk);
+  list->count--;
+  return Success;
+}
+
 void display(List_ptr list)
 {
   printf("no of elements in list : %d\n", list->count);
