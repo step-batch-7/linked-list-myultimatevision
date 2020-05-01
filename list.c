@@ -202,6 +202,26 @@ Status remove_all_occurrences(List_ptr list, int value)
   return count == list->count ? Failure : Success;
 }
 
+Status clear_list(List_ptr list)
+{
+  if (list->head == NULL)
+  {
+    return Failure;
+  }
+  Node_ptr p_walk = list->head;
+  Node_ptr pre_node;
+  while (p_walk != NULL)
+  {
+    pre_node = p_walk;
+    p_walk = p_walk->next;
+    free(pre_node);
+  }
+  list->head = NULL;
+  list->last = NULL;
+  list->count = 0;
+  return Success;
+}
+
 void display(List_ptr list)
 {
   printf("no of elements in list : %d\n", list->count);
