@@ -92,9 +92,18 @@ Status add_unique(List_ptr list, int value)
 
 Status remove_from_start(List_ptr list)
 {
+  if (list->head == NULL)
+  {
+    return Failure;
+  }
   Node_ptr p_walk = list->head;
-  free(list->head);
   list->head = p_walk->next;
+  if (p_walk == list->last)
+  {
+    list->last = NULL;
+  }
+  free(p_walk);
+  list->count--;
   return Success;
 }
 
@@ -105,13 +114,26 @@ Status remove_from_end(List_ptr list)
     return Failure;
   }
   Node_ptr p_walk = list->head;
-  while (p_walk->next != list->last)
+  Node_ptr pre_node = NULL;
+
+  while (p_walk != list->last)
   {
+    pre_node = p_walk;
     p_walk = p_walk->next;
   }
-  p_walk->next = NULL;
-  free(list->last);
-  list->last = p_walk;
+
+  if (p_walk == list->head)
+  {
+    list->head = NULL;
+  }
+  else
+  {
+    pre_node->next = NULL;
+  }
+
+  free(p_walk);
+  list->last = pre_node;
+  list->count--;
   return Success;
 }
 
