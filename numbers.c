@@ -91,13 +91,13 @@ void perform_operation(List_ptr list, char choice)
   case 'h':
     value = read("enter value to insert: \n");
     status = remove_first_occurrence(list, value);
-    print_status(status, "remove first occurence of value");
+    print_status(status, "remove first occurence of given value");
     break;
 
   case 'i':
     value = read("enter value to insert: \n");
     status = remove_all_occurrences(list, value);
-    print_status(status, "remove all occurences of value");
+    print_status(status, "remove all occurences of given value");
     break;
 
   case 'j':
@@ -108,7 +108,7 @@ void perform_operation(List_ptr list, char choice)
   case 'k':
     value = read("enter value to search: \n");
     status = is_value_exists(list, value);
-    print_status(status, "searching value");
+    print_status(status, "searching given value");
     break;
 
   case 'l':

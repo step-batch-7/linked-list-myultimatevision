@@ -182,22 +182,11 @@ Status remove_first_occurrence(List_ptr list, int value)
 
 Status remove_all_occurrences(List_ptr list, int value)
 {
-  Node *p_walk = list->head;
   int count = list->count;
-  int position = 0;
-  int pre_value;
-  while (p_walk != NULL)
+  Status status = Success;
+  while (status)
   {
-    pre_value = p_walk->value;
-    p_walk = p_walk->next;
-    if (pre_value == value)
-    {
-      remove_at(list, position);
-    }
-    else
-    {
-      position++;
-    }
+    status = remove_first_occurrence(list, value);
   }
   return count == list->count ? Failure : Success;
 }
