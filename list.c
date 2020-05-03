@@ -5,17 +5,23 @@
 Node_ptr create_node(int value)
 {
   Node_ptr new_node = malloc(sizeof(Node));
-  new_node->value = value;
-  new_node->next = NULL;
+  if (new_node != NULL)
+  {
+    new_node->value = value;
+    new_node->next = NULL;
+  }
   return new_node;
 }
 
 List_ptr create_list(void)
 {
   List_ptr list = malloc(sizeof(List));
-  list->head = NULL;
-  list->last = NULL;
-  list->count = 0;
+  if (list != NULL)
+  {
+    list->head = NULL;
+    list->last = NULL;
+    list->count = 0;
+  }
   return list;
 }
 

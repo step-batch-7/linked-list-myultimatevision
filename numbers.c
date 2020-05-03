@@ -128,14 +128,21 @@ void perform_operation(List_ptr list, char choice)
 int main(void)
 {
   List_ptr list = create_list();
-  char choice;
-  do
+  if (list != NULL)
   {
-    print_menu();
-    scanf("%c", &choice);
-    perform_operation(list, choice);
-    while ((getchar()) != '\n')
-      ;
-  } while (choice != 'm');
+    char choice;
+    do
+    {
+      print_menu();
+      scanf("%c", &choice);
+      perform_operation(list, choice);
+      while ((getchar()) != '\n')
+        ;
+    } while (choice != 'm');
+  }
+  else
+  {
+    printf("not able to create a list");
+  }
   return 0;
 }
