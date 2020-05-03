@@ -54,7 +54,7 @@ Status add_to_start(List_ptr list, int value)
 Status insert_at(List_ptr list, int value, int position)
 {
   Node_ptr new_node = create_node(value);
-  if (position < 0 && position > list->count)
+  if (position < 0 || position > list->count)
   {
     return Failure;
   }
@@ -139,7 +139,7 @@ Status remove_from_end(List_ptr list)
 
 Status remove_at(List_ptr list, int position)
 {
-  if (list->last == NULL || (position < 0 || position >= list->count))
+  if (list->last == NULL || position < 0 || position >= list->count)
   {
     return Failure;
   }

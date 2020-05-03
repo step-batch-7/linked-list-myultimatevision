@@ -28,14 +28,14 @@ int read(char *string)
   return value;
 }
 
-void print_exist_status(int value, Status status)
+void print_status(Status status, char *message)
 {
-  char *string = "does not exists in the list";
+  char *string = "is not done";
   if (status == Success)
   {
-    string = "exists in the list";
+    string = "is done";
   }
-  printf("%d %s\n", value, string);
+  printf("%s %s\n", message, string);
 }
 
 void perform_operation(List_ptr list, char choice)
@@ -45,61 +45,75 @@ void perform_operation(List_ptr list, char choice)
   switch (choice)
   {
   case 'a':
-    value = read("enter value to insert to start: \n");
-    add_to_start(list, value);
+    value = read("enter value to add to start: \n");
+    status = add_to_start(list, value);
+    print_status(status, "insert value to start");
     break;
 
   case 'b':
-    value = read("enter value to insert to end: \n");
-    add_to_end(list, value);
+    value = read("enter value to add to end: \n");
+    status = add_to_end(list, value);
+    print_status(status, "insert value to end");
+
     break;
 
   case 'c':
     value = read("enter value to insert: \n");
     position = read("enter position to insert: \n");
-    insert_at(list, value, position);
+    status = insert_at(list, value, position);
+    print_status(status, "insert value at given position");
+
     break;
 
   case 'd':
     value = read("enter value to insert uniquely: \n");
-    add_unique(list, value);
+    status = add_unique(list, value);
+    print_status(status, "insert unique value to end");
     break;
 
   case 'e':
-    remove_from_start(list);
+    status = remove_from_start(list);
+    print_status(status, "remove value from start");
     break;
 
   case 'f':
-    remove_from_end(list);
+    status = remove_from_end(list);
+    print_status(status, "remove value from end");
     break;
 
   case 'g':
     position = read("enter position to remove: \n");
-    remove_at(list, position);
+    status = remove_at(list, position);
+    print_status(status, "remove value at given position");
+
     break;
 
   case 'h':
     value = read("enter value to insert: \n");
-    remove_first_occurrence(list, value);
+    status = remove_first_occurrence(list, value);
+    print_status(status, "remove first occurence of value");
     break;
 
   case 'i':
     value = read("enter value to insert: \n");
-    remove_all_occurrences(list, value);
+    status = remove_all_occurrences(list, value);
+    print_status(status, "remove all occurences of value");
     break;
 
   case 'j':
-    clear_list(list);
+    status = clear_list(list);
+    print_status(status, "clearing list");
     break;
 
   case 'k':
     value = read("enter value to search: \n");
     status = is_value_exists(list, value);
-    print_exist_status(value, status);
+    print_status(status, "searching value");
     break;
 
   case 'l':
     display(list);
+
     break;
 
   case 'm':
